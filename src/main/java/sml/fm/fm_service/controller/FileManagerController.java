@@ -48,4 +48,12 @@ public class FileManagerController {
                 .body(fileData.getData());
 
     }
+
+    @PostMapping("/multiple")
+    public ResponseEntity<String> uploadMultipleFile(@RequestParam("files") MultipartFile[] files) throws IOException {
+        for (MultipartFile file : files) {
+            service.uploadImageToFileSystem(file);
+        }
+        return new ResponseEntity<>("Upload successfully", HttpStatus.OK);
+    }
 }
