@@ -1,4 +1,4 @@
-package sml.file_manager.file_service;
+package sml.fm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
