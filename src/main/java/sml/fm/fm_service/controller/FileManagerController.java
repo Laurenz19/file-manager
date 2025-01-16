@@ -33,4 +33,19 @@ public class FileManagerController {
                 .contentType(MediaType.valueOf(fileData.getContentType()))
                 .body(fileData.getData());
     }
+
+    @PostMapping("/fileSystem")
+    public ResponseEntity<String> uploadFileToFIleSystem(@RequestParam("file")MultipartFile file) throws IOException {
+        String uploadedFile = service.uploadImageToFileSystem(file);
+        return new ResponseEntity<>(uploadedFile, HttpStatus.OK);
+    }
+
+    @GetMapping("/fileSystem/{fileName}")
+    public ResponseEntity<byte[]> downloadFileFromFileSystem(@PathVariable String fileName) throws IOException {
+        FileDataResponse fileData = service.downloadImageFromFileSystem(fileName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf(fileData.getContentType()))
+                .body(fileData.getData());
+
+    }
 }
